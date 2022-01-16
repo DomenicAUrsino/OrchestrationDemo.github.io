@@ -3,34 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <style>iframe {border: 0;width: 100%;height: 400px;}</style>
+    <style>iframe {border: 0;width: 100%;height: 300px;}</style>
 </head>
 <body>
-<form id="paymentForm">
-    <div id="widget"
-     title="Dom's Test Payment Form"></div>
-     <center><button type="submit" onclick="myFunction()">Submit</button></center>
-</form>
-
-<script src="https://widget.paydock.com/sdk/latest/widget.umd.js" ></script>
-<script>
-    var widget = new paydock.HtmlWidget('#widget', '97c2d87402dd063610f641b46b4c764ae0b4df79', '61e0eb675b3f054e35161aa1', 'card', 'card_payment_source_with_cvv');
-
-    widget.useAutoResize();
-    widget.interceptSubmitForm('#paymentForm');
-    widget.onFinishInsert('input[name="payment_source_token"]', 'payment_source');
-    widget.setWebHookDestination('https://webhook.site/f9498571-f0cb-4ea0-a92d-225f4e2fbb94');
-    widget.showElements(['submit_button']);
-
-    widget.load();
-</script>
-
-<script>
-function myFunction() {
-  alert("Payment Details Sent to PayDock!");
-}
-</script>
-
-
+    <form id="paymentForm">
+        <div id="widget"></div>
+        <input name="payment_source_token" id="payment_source_token" type="hidden">
+    </form>
+    <script src="https://app-sandbox.paydock.com/v1/widget.umd.js" ></script>
+    <script>
+        var widget = new paydock.HtmlMultiWidget('#widget', '97c2d87402dd063610f641b46b4c764ae0b4df79', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcmVkZWZpbmVkX2ZpZWxkcyI6eyJnYXRld2F5X2lkIjoiNjFlMGViNjc1YjNmMDU0ZTM1MTYxYWExIiwidHlwZSI6ImNhcmQifSwiZGVmaW5lZF9mb3JtX2ZpZWxkcyI6WyJjYXJkX25hbWUiLCJjYXJkX251bWJlciIsImV4cGlyZV9tb250aCIsImV4cGlyZV95ZWFyIiwiY2FyZF9jY3YiXSwiYWxsb3dlZF9yZXNwb25zZV9kYXRhIjp7InVybCI6W10sImV2ZW50IjpbInBheW1lbnRfc291cmNlIl19LCJwdXJwb3NlIjoicGF5bWVudF9zb3VyY2UiLCJ3ZWJob29rX2Rlc3RpbmF0aW9uIjoiIiwic3VjY2Vzc19yZWRpcmVjdF91cmwiOiIiLCJlcnJvcl9yZWRpcmVjdF91cmwiOiIiLCJsYWJlbCI6IiIsIm1ldGEiOnt9LCJpYXQiOjE2NDIzMTI0MjF9.EKXh4irt6vQGByO0fXYI5pRGvCYqAY8FutbeAuMAUIY');
+        widget.onFinishInsert('input[name="payment_source_token"]', 'payment_source');
+        widget.load();
+    </script>
 </body>
 </html>
