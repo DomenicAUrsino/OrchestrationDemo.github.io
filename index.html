@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>iframe {border: 0;width: 100%;height: 300px;}</style>
 </head>
 <body>
     <form id="paymentForm">
@@ -14,9 +15,15 @@
         var widget = new paydock.HtmlWidget('#widget', '97c2d87402dd063610f641b46b4c764ae0b4df79');
         widget.onFinishInsert('input[name="payment_source_token"]', 'payment_source');
         widget.load();
-        widget.on('form_submit', function (data) {
-            console.log(data);
-        });
     </script>
+
+    <script>
+    widget.on('form_submit').then(function (data) {
+     console.log(data);
+    });
+    </script>
+
+
+
 </body>
 </html>
