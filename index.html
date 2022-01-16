@@ -8,9 +8,8 @@
 <body>
 <form id="paymentForm">
     <div id="widget"
-        title="Payment form"
-        finish-text="Payment resource was successfully accepted"></div>
-        <center><button type="submit">Submit</button></center>
+        title="Payment form"/div>
+        <center><button onclick="alert()" type="submit">Submit</button></center>
 </form>
 
 <script src="https://widget.paydock.com/sdk/latest/widget.umd.js" ></script>
@@ -28,6 +27,13 @@
 
     widget.load();
 </script>
+
+<script>
+function alert() {
+  alert("Payment Details Sent to PayDock!");
+}
 </script>
+
+
 </body>
 </html>
