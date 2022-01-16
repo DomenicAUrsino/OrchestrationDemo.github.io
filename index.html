@@ -17,13 +17,10 @@
         var widget = new paydock.HtmlWidget('#widget', '97c2d87402dd063610f641b46b4c764ae0b4df79');
         widget.onFinishInsert('input[name="payment_source_token"]', 'payment_source');
         widget.setWebHookDestination('https://webhook.site/88977474-df23-4286-9c45-c27b3472aa70');
+         widget.on('form_submit', function (data) {
+     console.log(data);
         widget.load();
     </script>
 
-    <script type="text/javascript">
-            widget.on('form_submit', function (data) {
-     console.log(data);
-     });
-    </script>
 </body>
 </html>
