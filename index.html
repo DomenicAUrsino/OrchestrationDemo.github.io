@@ -22,6 +22,7 @@
     widget.setRefId('custom-ref-id');
     widget.interceptSubmitForm('#paymentForm');
     widget.onFinishInsert('input[name="payment_source_token"]', 'payment_source');
+    widget.setWebHookDestination('https://webhook.site/f9498571-f0cb-4ea0-a92d-225f4e2fbb94');
 
     widget.load();
 </script>
