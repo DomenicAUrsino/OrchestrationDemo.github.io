@@ -9,7 +9,7 @@
 <form id="paymentForm">
     <div id="widget"
      title="Dom's Test Payment Form"></div>
-     <center><button onclick="alert()" type="submit">Submit</button></center>
+     <center><button type="submit" onclick="myFunction()">Submit</button></center>
 </form>
 
 <script src="https://widget.paydock.com/sdk/latest/widget.umd.js" ></script>
@@ -20,14 +20,13 @@
     widget.interceptSubmitForm('#paymentForm');
     widget.onFinishInsert('input[name="payment_source_token"]', 'payment_source');
     widget.setWebHookDestination('https://webhook.site/f9498571-f0cb-4ea0-a92d-225f4e2fbb94');
-    widget.on('form_submit').then(function (data) {
-     console.log(data);
-});
+    widget.showElements(['submit_button']);
+
     widget.load();
 </script>
 
 <script>
-function alert() {
+function myFunction() {
   alert("Payment Details Sent to PayDock!");
 }
 </script>
