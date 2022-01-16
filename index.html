@@ -7,10 +7,9 @@
 </head>
 <body>
 <form id="paymentForm">
-    <button type="submit">Submit</button>
     <div id="widget"
-     title="Payment form"
-     finish-text="Payment resource was successfully accepted"></div>
+     title="Dom's Test Payment Form"></div>
+     <center><button onclick="alert()" type="submit">Submit</button></center>
 </form>
 
 <script src="https://widget.paydock.com/sdk/latest/widget.umd.js" ></script>
@@ -22,10 +21,6 @@
     widget.onFinishInsert('input[name="payment_source_token"]', 'payment_source');
     widget.setWebHookDestination('https://webhook.site/f9498571-f0cb-4ea0-a92d-225f4e2fbb94');
     widget.showElements(['submit_button']);
-    widget.on('form_submit', function (data) {
-     console.log(data);
-    });
-
     widget.load();
 </script>
 
