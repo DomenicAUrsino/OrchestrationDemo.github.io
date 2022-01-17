@@ -25,6 +25,37 @@
     <center>Exp Date: 12/23</center>
     <center>CVV: 123</center>
 
+    <p><center>Payment Token: <input type="text" id="token"><button onclick="payNow()">Click me</button></center></p>
+
+
+<script type="text/javascript">
+    
+function payNow(){
+
+var data = JSON.stringify({
+  "amount": "100",
+  "currency": "AUD",
+  "token": document.getElementById("token").value
+});
+
+var xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+
+xhr.addEventListener("readystatechange", function() {
+  if(this.readyState === 4) {
+    console.log(this.responseText);
+  }
+});
+
+xhr.open("POST", "https://api-sandbox.paydock.com/v1/charges");
+xhr.setRequestHeader("x-user-secret-key", "3eb1654b7610dbebc25aa29ae15499e42d97dfe2");
+xhr.setRequestHeader("Content-Type", "application/json");
+
+xhr.send(data);
+}
+
+
+</script>
+
 </body>
 </html>
-
