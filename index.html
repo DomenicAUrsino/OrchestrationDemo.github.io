@@ -21,38 +21,13 @@
         widget.load();
     </script>
 
-    <center><button onclick="window.location.href='https://webhook.site/#!/f9498571-f0cb-4ea0-a92d-225f4e2fbb94'">Click To View Webhook Data</button></center>
     <center>Card Number: 4242424242424242</center>
     <center>Exp Date: 12/23</center>
     <center>CVV: 123</center>
 
-    <p><center>Payment Token: <input type="text" id="token"><button onclick="payNow()">Click me</button></center></p>
+    <p><center><button onclick="window.location.href='https://webhook.site/#!/f9498571-f0cb-4ea0-a92d-225f4e2fbb94'">Click To View Webhook Data</button></center></p>
 
 
-<script>
-    
-function payNow(){
-
-var settings = {
-  "url": "https://api-sandbox.paydock.com/v1/charges",
-  "method": "POST",
-  "timeout": 0,
-  "headers": {
-    "x-user-secret-key": "3eb1654b7610dbebc25aa29ae15499e42d97dfe2",
-    "Content-Type": "application/json"
-  },
-  "data": JSON.stringify({
-    "amount": "100",
-    "currency": "AUD",
-    "token": document.getElementById("token").value
-  }),
-};
-
-$.ajax(settings).done(function (response) {
-  console.log(response);
-});
-
-}
 </script>
 
 </body>
