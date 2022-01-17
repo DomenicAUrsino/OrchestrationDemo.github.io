@@ -5,10 +5,28 @@
     <title>Title</title>
 </head>
 <body>
-    <button type="button" id="button">checkout</button>
-    <script src="https://widget.paydock.com/sdk/latest/widget.umd.js" ></script>
-    <script>
-        var button = new paydock.PaypalCheckoutButton('#button', '97c2d87402dd063610f641b46b4c764ae0b4df79');
-    </script>
+<form id="paymentForm">
+    <button type="button" id="button">
+        <img src="https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" align="left" style="margin-right:7px;">
+    </button>
+</form>
+
+<input type="text" name="pst" />
+
+<script src="https://widget.paydock.com/sdk/latest/widget.umd.js" ></script>
+<script>
+    var button = new paydock.PaypalCheckoutButton('#button', '97c2d87402dd063610f641b46b4c764ae0b4df79', '61e4f8c15b3f054e352ecc8a');
+    button.onFinishInsert('input[name="pst"]', 'payment_source_token');
+    button.setMeta({
+           brand_name: 'Paydock',
+           reference: '15',
+           first_name: 'Joshua',
+           last_name: 'Wood',
+           phone: '0231049872'}); 
+    
+    button.on('finish', function (data) { 
+           console.log('on:finish', data);
+    });
+</script>
 </body>
 </html>
