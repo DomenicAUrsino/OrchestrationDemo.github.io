@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Dom's Test Harness</title>
     <style>iframe {border: 0;width: 100%;height: 300px;}</style>
 </head>
 <body>
     <form id="paymentForm">
         <div id="widget"
         title="Dom's Payment Form"
-        finish-text="Successful! Check Payment Token Textbox!"></div>
+        finish-text="Success! Check Payment Token Below or Console Log!"></div>
     </form>
     
         <script src="https://widget.paydock.com/sdk/latest/widget.umd.js" ></script>
@@ -18,12 +18,16 @@
         var widget = new paydock.HtmlWidget('#widget', '97c2d87402dd063610f641b46b4c764ae0b4df79');
         widget.onFinishInsert('input[name="payment_source_token"]', 'payment_source');
         widget.load();
+        widget.on('finish', function (data) { 
+           alert('Check Payment Token Textbox')
+           console.log('Payment Data', data);
+        });
     </script>
 
     <center><b>Card Number: </b>4242424242424242</center>
     <center><b>Exp Date: </b>12/23</center>
     <center><b>CVV: </b>123</center>
-    <p><center><b>Payment Token: </b><input name="payment_source_token" id="payment_source_token"></center></p>
+    <p><center><b>Payment Token: </b><input name="payment_source_token" id="payment_source_token" readonly></center></p>
 
 </body>
 </html>
