@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Dom's Test Harness</title>
+    <title>Title</title>
     <style>iframe {border: 0;width: 100%;height: 300px;}</style>
 </head>
 <body>
@@ -12,6 +12,7 @@
         finish-text="Success! Check Payment Token Below or Console Log!"></div>
     </form>
     
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://widget.paydock.com/sdk/latest/widget.umd.js" ></script>
     
     <script>
@@ -24,10 +25,43 @@
         });
     </script>
 
+    <script>
+
+     function sendPayload(){
+var data = JSON.stringify({
+  "amount": document.getElementById("amount").value,
+  "currency": "AUD",
+  "token": document.getElementById("payment_source_token").value
+});
+var xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+
+xhr.addEventListener("readystatechange", function() {
+  if(this.readyState === 4) {
+    console.log(this.responseText);
+    alert('Payload sent to PayDock, please check below JSON Data');
+    $('#jsondata').val(this.responseText);
+  }
+});
+xhr.open("POST", "https://api-sandbox.paydock.com/v1/charges");
+xhr.setRequestHeader("x-user-secret-key", "3eb1654b7610dbebc25aa29ae15499e42d97dfe2");
+xhr.setRequestHeader("Content-Type", "application/json");
+xhr.send(data);
+}
+
+
+
+    </script>
+
     <center><b>Card Number: </b>4242424242424242</center>
     <center><b>Exp Date: </b>12/23</center>
     <center><b>CVV: </b>123</center>
-    <p><center><b>Payment Token: </b><input name="payment_source_token" id="payment_source_token" readonly></center></p>
+    <p><center><b>Step 1) Your Payment Token is: </b><input name="payment_source_token" id="payment_source_token" readonly></center></p>
+    <p><center><b>Step 2) Enter Payment Amount: </b><input name="amount" id="amount" maxlength="3"></center></p>
+    <p><center><b>Step 3) </b><button onclick="sendPayload()">Send Your Payment</button></center></p>
+    <p><center><b>Step 4) Your JSON Data is: </b></center></p>
+    <p><center><textarea name="jsondata" id="jsondata" style="height: 413px; width: 1289px;" readonly></textarea></center></p>
+
 
 </body>
 </html>
