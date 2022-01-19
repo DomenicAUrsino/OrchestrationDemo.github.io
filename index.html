@@ -40,7 +40,6 @@ xhr.withCredentials = true;
 xhr.addEventListener("readystatechange", function() {
   if(this.readyState === 4) {
     console.log(this.responseText);
-    alert('Payload sent to PayDock, please check below JSON Data');
     $('#jsondata').val(this.responseText);
   }
 });
