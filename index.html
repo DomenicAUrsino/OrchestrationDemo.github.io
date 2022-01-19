@@ -9,7 +9,7 @@
     <form id="paymentForm">
         <div id="widget"
         title="Dom's Test Harness"
-        finish-text="Success! Check Payment Token Below or Console Log!"></div>
+        finish-text="Success! Check Payment Token Below / Console Log!"></div>
     </form>
     
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -20,7 +20,6 @@
         widget.onFinishInsert('input[name="payment_source_token"]', 'payment_source');
         widget.load();
         widget.on('finish', function (data) { 
-           alert('Check Payment Token Textbox')
            console.log('Payment Data', data);
         });
     </script>
@@ -43,13 +42,22 @@ xhr.addEventListener("readystatechange", function() {
     $('#jsondata').val(this.responseText);
   }
 });
+
+xhr.addEventListener("readystatechange", function() {
+  if(this.readyState === 4) {
+    if(this.status == 201)
+    $('#payment_status').val('Payment Approved!');
+    else
+    $('#payment_status').val('Request Failed!');
+  }
+});
+
+
 xhr.open("POST", "https://api-sandbox.paydock.com/v1/charges");
 xhr.setRequestHeader("x-user-secret-key", "3eb1654b7610dbebc25aa29ae15499e42d97dfe2");
 xhr.setRequestHeader("Content-Type", "application/json");
 xhr.send(data);
 }
-
-
 
     </script>
 
@@ -59,7 +67,8 @@ xhr.send(data);
     <p><center><b>Step 1) Your Payment Token is: </b><input name="payment_source_token" id="payment_source_token" readonly></center></p>
     <p><center><b>Step 2) Enter Payment Amount: </b><input name="amount" id="amount" maxlength="3"></center></p>
     <p><center><b>Step 3) </b><button onclick="sendPayload()">Send Your Payment</button></center></p>
-    <p><center><b>Step 4) Your JSON Response Data is: </b></center></p>
+    <p><center><b>Step 4) Check Your Payment Status: </b><input name="payment_status" id="payment_status" readonly></center></p>
+    <p><center><b>Step 5) Your JSON Response Data is: </b></center></p>
     <p><center><textarea name="jsondata" id="jsondata" style="height: 413px; width: 1289px;" readonly></textarea></center></p>
 
 
