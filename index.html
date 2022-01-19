@@ -9,7 +9,7 @@
     <form id="paymentForm">
         <center><img src="/logo.png" width="450" height="119.94"></center>
         <div id="widget"
-        title="Dom's Test Harness"
+        title="Orchestration Demo"
         finish-text="Success! Check Payment Token Below / Console Log!"></div>
     </form>
     
@@ -27,6 +27,11 @@
           placeholder: 'Input your card holder name...',
           label: 'Card Holder Name',
           value: 'Houston',
+      },
+      {
+          field:  'card_number*',
+          label: 'Card Number',
+          value: '4242424242424242',
       }
   ])
         widget.load();
