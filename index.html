@@ -20,6 +20,14 @@
     <script>
         var widget = new paydock.HtmlWidget('#widget', '97c2d87402dd063610f641b46b4c764ae0b4df79');
         widget.onFinishInsert('input[name="payment_source_token"]', 'payment_source');
+        widget.setFormElements([
+      {
+          field:  'card_name*',
+          placeholder: 'Input your card holder name...',
+          label: 'Card Holder Name',
+          value: 'Houston',
+      }
+  ])
         widget.load();
         widget.on('finish', function (data) { 
            console.log('Payment Data', data);
